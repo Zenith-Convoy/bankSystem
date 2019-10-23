@@ -1,0 +1,82 @@
+﻿<Window x:Class="OutlawHess.customerAccount"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OutlawHess"
+        mc:Ignorable="d"
+        Title="customerAccount" Height="805.2" Width="1280" Closing="Window_Closing" WindowState="Maximized">
+    <Grid Background="#FF2B2B2B" RenderTransformOrigin="0.486,0.501">
+        <Button x:Name="btReturn" Click="btReturn_Click" Margin="30,31,0,0" Content="Back" VerticalAlignment="Top" MinWidth="123" MinHeight="27" Width="30" HorizontalAlignment="Left" Height="30" />
+        <Label x:Name="lbcustID" Content="Label" HorizontalAlignment="Left" Margin="135,98,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.544,-0.586" Foreground="White"/>
+        <TextBox x:Name="txtCustFName" Text="Label" HorizontalAlignment="Left" Margin="139,128,0,0" VerticalAlignment="Top" Width="92"/>
+        <TextBox x:Name="txtCustLname" Text="Label" HorizontalAlignment="Left" Margin="139,159,0,0" VerticalAlignment="Top" Width="92" Height="18"/>
+        <TextBox x:Name="txtDob" Text="Label" HorizontalAlignment="Left" Margin="139,190,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.423,0.392" Height="18" Width="92"/>
+        <TextBox x:Name="txtNatins" Text="Label" HorizontalAlignment="Left" Margin="139,220,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.077,0.597" Width="91"/>
+        <TextBox x:Name="txtEmail" Text="Label" HorizontalAlignment="Left" Margin="139,253,0,0" VerticalAlignment="Top" Width="91"/>
+        <TextBox x:Name="txtAllowence" Text="Label" HorizontalAlignment="Left" Margin="139,284,0,0" VerticalAlignment="Top" Height="18" Width="91"/>
+        <DataGrid x:Name="dgCustAccounts" HorizontalAlignment="Left" Height="275" Margin="307,93,0,0" VerticalAlignment="Top" Width="379" SelectionChanged="dgCustAccounts_SelectionChanged" BeginningEdit="dgCustAccounts_BeginningEdit" Background="#FF474747" BorderBrush="#FF688CAF" />
+        <DataGrid x:Name="dgCustTransactions" HorizontalAlignment="Left" Height="412" Margin="764,93,0,0" VerticalAlignment="Top" Width="465" Background="#FF474747" BorderBrush="#FF688CAF" />
+        <Button x:Name="btUpdateCust" HorizontalAlignment="Left" Margin="36,332,0,0" VerticalAlignment="Top" Width="75" Click="btUpdateCust_Click">
+            <Button Content="Update" Width="75"/>
+        </Button>
+        <Button x:Name="btDeleteCust" HorizontalAlignment="Left" Margin="36,361,0,0" VerticalAlignment="Top" Width="75" Click="btDeleteCust_Click">
+            <Button Content="Delete" Width="75"/>
+        </Button>
+        <Label x:Name="lbUpdated" Content="..." HorizontalAlignment="Left" Height="41" Margin="116,327,0,0" VerticalAlignment="Top" Width="130" FontSize="22" Foreground="#FFC56262"/>
+        <ComboBox x:Name="CBProduct" HorizontalAlignment="Left" Margin="307,376,0,0" VerticalAlignment="Top" Width="130" Height="23"/>
+        <Button x:Name="btAddIsa"  Content="Add ISA" HorizontalAlignment="Left" Margin="456,376,0,0" VerticalAlignment="Top" Width="75" Click="btAddIsa_Click" Height="23" Background="#FF53C754"/>
+        <Button x:Name="btDelIsa" Content="Del. Selected Account" HorizontalAlignment="Left" Margin="558,376,0,0" VerticalAlignment="Top" Width="128" Click="btDelIsa_Click" Height="23" Background="#FFDC433E"/>
+        <ComboBox x:Name="CBAccount" HorizontalAlignment="Left" Margin="307,432,0,0" VerticalAlignment="Top" Width="130"/>
+        <Button x:Name="btTransfer"  Content="Transfer" HorizontalAlignment="Left" Margin="558,432,0,0" VerticalAlignment="Top" Width="128" Click="btTransfer_Click" Height="23"/>
+        <TextBox x:Name="txtAmount" HorizontalAlignment="Left" Height="23" 
+                             Margin="456,432,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" 
+                             FontSize="16" FontFamily="Tahoma">
+            <TextBox.Style>
+                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    <Style.Resources>
+                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                            <VisualBrush.Visual>
+                                <Label Content="£0.00" Foreground="#FFBBC1C7" FontSize="14" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBlock HorizontalAlignment="Left" Margin="307,469,0,0" TextWrapping="Wrap" Text="Select sender in table. Then recipient from drop down, enter amount (£), and click transfer to commit. " VerticalAlignment="Top" Height="36" Width="379" Foreground="White"/>
+        <Label Content="Customer ID" HorizontalAlignment="Left" Margin="29,98,0,0" VerticalAlignment="Top" Foreground="#FFFFFEFE"/>
+        <Label Content="First Name" HorizontalAlignment="Left" Margin="30,124,0,0" VerticalAlignment="Top" Width="67" Foreground="White"/>
+        <Label Content="Last Name" HorizontalAlignment="Left" Margin="30,155,0,0" VerticalAlignment="Top" Width="67" Foreground="White"/>
+        <Label Content="Date of Birth" HorizontalAlignment="Left" Margin="30,186,0,0" VerticalAlignment="Top" Width="97" Foreground="White"/>
+        <Label Content="Natin" HorizontalAlignment="Left" Margin="30,216,0,0" VerticalAlignment="Top" Width="67" Height="28" RenderTransformOrigin="0.71,0.329" Foreground="White"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="30,249,0,0" VerticalAlignment="Top" Width="50" Foreground="White"/>
+        <Label Content="Allowence" HorizontalAlignment="Left" Margin="30,280,0,0" VerticalAlignment="Top" Width="67" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="456,77,0,0" TextWrapping="Wrap" Text="Accounts" VerticalAlignment="Top" FontWeight="Bold" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="950,77,0,0" TextWrapping="Wrap" Text="Account Transactions" VerticalAlignment="Top" FontWeight="Bold" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="36,77,0,0" TextWrapping="Wrap" Text="Customer" VerticalAlignment="Top" FontWeight="Bold" Foreground="White"/>
+        <Separator HorizontalAlignment="Left" Height="26" Margin="307,401,0,0" VerticalAlignment="Top" Width="379"/>
+        <Separator HorizontalAlignment="Left" Height="100" Margin="529,338,0,0" VerticalAlignment="Top" Width="29" RenderTransformOrigin="0.5,0.5">
+            <Separator.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90.143"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Separator.RenderTransform>
+        </Separator>
+
+    </Grid>
+</Window>
